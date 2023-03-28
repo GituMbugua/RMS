@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="GuestCategory" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="02e43219-b8c8-4712-960d-ba82fdde529c">
+	<property name="ireport.zoom" value="1.771561000000001"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<queryString language="SQL">
+		<![CDATA[SELECT guest_category.guest_category AS 'Guest Category', COUNT(category_id) AS Count FROM `guest_category` LEFT JOIN reservation ON guest_category.category_id=reservation.guest_category GROUP BY guest_category.guest_category ORDER BY Count]]>
+	</queryString>
+	<field name="Guest Category" class="java.lang.String"/>
+	<field name="Count" class="java.lang.Long"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="72" splitType="Stretch">
+			<staticText>
+				<reportElement x="144" y="11" width="284" height="49" uuid="fb0aabc1-2b03-4afb-a596-55f6156555b4"/>
+				<textElement textAlignment="Center">
+					<font size="24"/>
+				</textElement>
+				<text><![CDATA[Guest Category Report]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="41" splitType="Stretch">
+			<staticText>
+				<reportElement x="56" y="1" width="100" height="20" uuid="f45d678e-2e8d-432e-8812-bc3c8cbed7bc"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Guest Category]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="273" y="1" width="100" height="20" uuid="7dca566d-3d13-44e6-bd96-e6c133605c5a"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Count]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="35" splitType="Stretch">
+			<textField>
+				<reportElement x="273" y="8" width="100" height="20" uuid="be9c97f9-6b36-4015-b77f-732acc1c3afb"/>
+				<textFieldExpression><![CDATA[$F{Count}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="56" y="8" width="100" height="20" uuid="88a8f891-dc5c-4e1b-9723-c0f467701cc1"/>
+				<textFieldExpression><![CDATA[$F{Guest Category}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>

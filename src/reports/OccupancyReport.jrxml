@@ -1,0 +1,198 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="143de7cd-2b86-4c5b-a960-0f754afec0ea">
+	<property name="ireport.zoom" value="2.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="2"/>
+	<queryString language="SQL">
+		<![CDATA[SELECT DAYNAME(arrival_date) AS day, booking_date, arrival_date, num_of_adults, num_of_children_u12, num_of_children_teen FROM `reservation` WHERE arrival_date BETWEEN '2021-04-01' AND '2021-04-30']]>
+	</queryString>
+	<field name="day" class="java.lang.String"/>
+	<field name="booking_date" class="java.sql.Timestamp">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="arrival_date" class="java.sql.Timestamp">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="num_of_adults" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="num_of_children_u12" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="num_of_children_teen" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<variable name="day_total" class="java.lang.Integer">
+		<variableExpression><![CDATA[$F{num_of_adults}+$F{num_of_children_u12}+$F{num_of_children_teen}]]></variableExpression>
+		<initialValueExpression><![CDATA[]]></initialValueExpression>
+	</variable>
+	<variable name="occupancy_rate" class="java.lang.Double">
+		<variableExpression><![CDATA[(double) $V{day_total}/42*100]]></variableExpression>
+		<initialValueExpression><![CDATA[]]></initialValueExpression>
+	</variable>
+	<variable name="total_occupancy" class="java.lang.Integer" calculation="Sum">
+		<variableExpression><![CDATA[$V{day_total}]]></variableExpression>
+		<initialValueExpression><![CDATA[]]></initialValueExpression>
+	</variable>
+	<variable name="average_occupancy" class="java.lang.Double" calculation="Average">
+		<variableExpression><![CDATA[(double) $V{occupancy_rate}]]></variableExpression>
+		<initialValueExpression><![CDATA[]]></initialValueExpression>
+	</variable>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="79" splitType="Stretch">
+			<staticText>
+				<reportElement x="144" y="10" width="284" height="49" uuid="610e14f4-f1d8-4c42-a10d-97236977491f"/>
+				<textElement textAlignment="Center">
+					<font size="24"/>
+				</textElement>
+				<text><![CDATA[Occupancy Report]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="36" splitType="Stretch">
+			<staticText>
+				<reportElement x="251" y="0" width="66" height="20" uuid="7ca08afd-16d1-4d96-a0bd-c591156596da"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Children U12]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="0" width="60" height="20" uuid="26ce0973-e4e2-485a-badc-d2cd4949849a"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Day]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="488" y="0" width="67" height="20" uuid="84e2bed5-6c36-445d-85d6-94ad1c39f0a7"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Occupancy Rate (%)]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="184" y="0" width="46" height="20" uuid="a76cf5cd-db10-483b-b322-b31df06f585d"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Adults]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="418" y="0" width="59" height="20" uuid="c4d3b938-39f3-4b11-839c-c375c97f3e54"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Day Total]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="71" y="0" width="99" height="20" uuid="fb2645e7-92cb-455b-a617-f25114dbc3b7"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Date]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="335" y="0" width="62" height="20" uuid="1c56434d-bf89-4e03-86a0-6fe69502a268"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Children 12+]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="24" splitType="Stretch">
+			<textField>
+				<reportElement x="71" y="0" width="99" height="20" uuid="4b9faa11-4840-4341-a1fd-da858eced0a5"/>
+				<textFieldExpression><![CDATA[$F{arrival_date}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="251" y="0" width="66" height="20" uuid="031ab417-f6db-42e8-9ae5-139189cfa868"/>
+				<textFieldExpression><![CDATA[$F{num_of_children_u12}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="184" y="0" width="46" height="20" uuid="349e904b-e076-4520-af6c-bfac20194f45"/>
+				<textFieldExpression><![CDATA[$F{num_of_adults}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="335" y="0" width="62" height="20" uuid="55928717-2fa2-401f-ad5f-4194d354203b"/>
+				<textFieldExpression><![CDATA[$F{num_of_children_teen}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="418" y="0" width="59" height="20" uuid="eaa0bf0a-b2dc-4afa-9156-91d0056d8918"/>
+				<textFieldExpression><![CDATA[$V{day_total}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="false">
+				<reportElement x="488" y="0" width="67" height="20" uuid="d8a32160-1469-4554-b36a-2eb1a977e9dd"/>
+				<textFieldExpression><![CDATA[$V{occupancy_rate}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="0" y="0" width="60" height="20" uuid="45f2bc5b-e53c-4bac-9983-25a9ccb5e45e"/>
+				<textFieldExpression><![CDATA[$F{day}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="94" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="30" width="191" height="20" uuid="6b9b8c68-9169-4a3e-a1d2-29f0d4efbad4"/>
+				<text><![CDATA[Average bed occupancy for the month]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="0" width="100" height="20" uuid="aac964f5-a0d6-460a-9b21-18da342c6eee"/>
+				<text><![CDATA[Total Occupancy]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="407" y="0" width="148" height="20" uuid="0fb2aff6-154c-468b-96d0-0d79a05e6a32"/>
+				<textFieldExpression><![CDATA[$V{total_occupancy}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="407" y="30" width="148" height="20" uuid="bcf6c14e-87f0-400d-8a05-23a3c1ae139d"/>
+				<textFieldExpression><![CDATA[$V{average_occupancy}]]></textFieldExpression>
+			</textField>
+		</band>
+	</columnFooter>
+	<pageFooter>
+		<band height="100" splitType="Stretch">
+			<staticText>
+				<reportElement x="230" y="55" width="34" height="20" uuid="20059b69-8ed5-4b9a-8cd7-6ea5eef3ec35"/>
+				<text><![CDATA[Date:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="10" y="10" width="71" height="20" uuid="3c8eb616-95a4-4024-aebe-41cbd8b582cf"/>
+				<text><![CDATA[Prepared By:]]></text>
+			</staticText>
+			<line>
+				<reportElement x="81" y="31" width="117" height="1" uuid="bd2735df-2d3b-455b-a48b-b449847b1fd7"/>
+			</line>
+			<line>
+				<reportElement x="264" y="29" width="122" height="1" uuid="9b4d935f-645c-4a29-ad9e-1515ae2af4f5"/>
+			</line>
+			<staticText>
+				<reportElement x="10" y="56" width="71" height="20" uuid="9d28a941-7ceb-4298-af09-7838a1f73fbc"/>
+				<text><![CDATA[Checked By:]]></text>
+			</staticText>
+			<line>
+				<reportElement x="264" y="74" width="122" height="1" uuid="84c53a8d-2738-4c11-a1f8-311fce6ba8e5"/>
+			</line>
+			<line>
+				<reportElement x="81" y="75" width="117" height="1" uuid="33d6223c-867f-4096-9538-4d7068c97876"/>
+			</line>
+			<staticText>
+				<reportElement x="230" y="10" width="34" height="20" uuid="e5f0c4d9-5837-4fb6-9e85-8439d7dd9ff9"/>
+				<text><![CDATA[Date:]]></text>
+			</staticText>
+		</band>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>
