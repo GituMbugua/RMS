@@ -50,7 +50,7 @@
 
 |    **Rooms**    |     **Admin Tools**    |
 :----------------:|:-------------------------:
-![5-rooms](/screenshots/rooms.png) | ![6-admin_tools](/screenshots/admin_tools.png)  |
+![5-rooms](/screenshots/rooms.png) | ![6-admin_settings](/screenshots/admin_settings.png)  |
 
 ## About The Project
 
