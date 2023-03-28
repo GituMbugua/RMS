@@ -18,7 +18,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `rondo`
+-- Database: `rms`
 --
 
 -- --------------------------------------------------------
@@ -128,7 +128,7 @@ INSERT INTO `guest_category` (`category_id`, `guest_category`) VALUES
 (4, 'Resident Child 12+'),
 (5, 'Non-Resident Child U12'),
 (6, 'Non-Resident Child 12+'),
-(7, 'TF Staff'),
+(7, 'Staff'),
 (8, 'Complementary'),
 (9, 'Missionary'),
 (10, 'Day/Walk-In');
@@ -327,7 +327,7 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`user_id`, `first_name`, `middle_name`, `surname`, `username`, `password`, `date_of_birth`, `phone_number`, `address`, `email`, `role`, `is_admin`) VALUES
-(6, 'Gitu', 'test', 'M', 'gm', '912ec803b2ce49e4a541068d495ab570', '1990-12-11', '+254 712345678', 'PO Box 123456', 'test@email.com', 'Item 2', 1),
+(6, 'Test', 'test', 'M', 'tt', '912ec803b2ce49e4a541068d495ab570', '1990-12-11', '+254 712345678', 'PO Box 123456', 'test@email.com', 'Item 2', 1),
 (9, 'Viewer', '', 'Audit', 'audit', 'a5a63d9b90e6bfe9261e70b66afec721', '1950-01-01', '', '', '', 'Audit', 0),
 (10, 'Admin', '', 'Admin', 'admin', '21232f297a57a5a743894a0e4a801fc3', '1950-01-01', '', '', '', 'Admin', 1);
 
